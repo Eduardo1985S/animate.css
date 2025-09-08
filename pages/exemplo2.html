@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Exemplo 2 - Galeria Interativa com Animate.css</title>
+    <!-- Animate.css CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"
+    />
+    <style>
+      :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        --tertiary-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        --dark-bg: #1a1a2e;
+        --card-bg: #16213e;
+        --text-primary: #ffffff;
+        --text-secondary: #b8c6db;
+        --accent: #ff6b6b;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: var(--dark-bg);
+        color: var(--text-primary);
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 40px;
+        padding: 20px;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 10px;
+      }
+
+      header p {
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+      }
+
+      .nav-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 40px;
+      }
+
+      .nav-button {
+        padding: 12px 24px;
+        background: var(--primary-gradient);
+        color: white;
+        text-decoration: none;
+        border-radius: 25px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow);
+      }
+
+      .nav-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+      }
+
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      .gallery-item {
+        background: var(--card-bg);
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: transform 0.3s ease;
+        cursor: pointer;
+      }
+
+      .gallery-item:hover {
+        transform: translateY(-5px);
+      }
+
+      .gallery-image {
+        height: 200px;
+        background: var(--primary-gradient);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        color: white;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .gallery-image::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .gallery-item:hover .gallery-image::before {
+        left: 100%;
+      }
+
+      .gallery-content {
+        padding: 20px;
+      }
+
+      .gallery-title {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        color: var(--text-primary);
+      }
+
+      .gallery-description {
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin-bottom: 15px;
+      }
+
+      .gallery-tags {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .tag {
+        background: var(--accent);
+        color: white;
+        padding: 4px 12px;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+
+      .features-section {
+        background: var(--card-bg);
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 40px;
+        box-shadow: var(--shadow);
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      .feature-item {
+        text-align: center;
+        padding: 20px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+        display: block;
+      }
+
+      .feature-title {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        color: var(--text-primary);
+      }
+
+      .feature-description {
+        color: var(--text-secondary);
+        line-height: 1.5;
+      }
+
+      .animation-controls {
+        text-align: center;
+        margin: 40px 0;
+      }
+
+      .control-button {
+        background: var(--secondary-gradient);
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 25px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow);
+      }
+
+      .control-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+      }
+
+      footer {
+        text-align: center;
+        padding: 30px;
+        color: var(--text-secondary);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /* Animações customizadas */
+      .fade-in-sequence .gallery-item:nth-child(1) {
+        animation-delay: 0.2s;
+      }
+      .fade-in-sequence .gallery-item:nth-child(2) {
+        animation-delay: 0.4s;
+      }
+      .fade-in-sequence .gallery-item:nth-child(3) {
+        animation-delay: 0.6s;
+      }
+      .fade-in-sequence .gallery-item:nth-child(4) {
+        animation-delay: 0.8s;
+      }
+      .fade-in-sequence .gallery-item:nth-child(5) {
+        animation-delay: 1s;
+      }
+      .fade-in-sequence .gallery-item:nth-child(6) {
+        animation-delay: 1.2s;
+      }
+
+      /* Acessibilidade */
+      @media (prefers-reduced-motion: reduce) {
+        .animate__animated {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 2rem;
+        }
+
+        .nav-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .gallery {
+          grid-template-columns: 1fr;
+        }
+
+        .features-section {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="animate__animated animate__fadeInDown">
+        <h1>Galeria Interativa</h1>
+        <p>Demonstração avançada de animações com Animate.css</p>
+      </header>
+
+      <div
+        class="nav-buttons animate__animated animate__fadeInUp animate__delay-1s"
+      >
+        <a href="../index.html" class="nav-button">← Página Principal</a>
+        <a href="exemplo.html" class="nav-button">Exemplo 1</a>
+      </div>
+
+      <div
+        class="animation-controls animate__animated animate__fadeIn animate__delay-2s"
+      >
+        <button class="control-button" onclick="replayGalleryAnimation()">
+          🎬 Replay Galeria
+        </button>
+        <button class="control-button" onclick="replayFeatureAnimation()">
+          ✨ Replay Features
+        </button>
+      </div>
+
+      <div class="gallery fade-in-sequence" id="gallery">
+        <div class="gallery-item animate__animated animate__zoomIn">
+          <div
+            class="gallery-image"
+            style="background: var(--primary-gradient)"
+          >
+            🎨
+          </div>
+          <div class="gallery-content">
+            <h3 class="gallery-title">Design Criativo</h3>
+            <p class="gallery-description">
+              Explore o poder das animações CSS para criar interfaces
+              envolventes e experiências visuais impressionantes.
+            </p>
+            <div class="gallery-tags">
+              <span class="tag">CSS</span>
+              <span class="tag">Design</span>
+              <span class="tag">UX</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item animate__animated animate__slideInLeft">
+          <div
+            class="gallery-image"
+            style="background: var(--secondary-gradient)"
+          >
+            🚀
+          </div>
+          <div class="gallery-content">
+            <h3 class="gallery-title">Performance</h3>
+            <p class="gallery-description">
+              Animações otimizadas que mantêm a fluidez e responsividade em
+              todos os dispositivos e navegadores modernos.
+            </p>
+            <div class="gallery-tags">
+              <span class="tag">Performance</span>
+              <span class="tag">Mobile</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item animate__animated animate__slideInRight">
+          <div
+            class="gallery-image"
+            style="background: var(--tertiary-gradient)"
+          >
+            📱
+          </div>
+          <div class="gallery-content">
+            <h3 class="gallery-title">Responsivo</h3>
+            <p class="gallery-description">
+              Design que se adapta perfeitamente a qualquer tamanho de tela,
+              mantendo a qualidade das animações em todos os dispositivos.
+            </p>
+            <div class="gallery-tags">
+              <span class="tag">Responsive</span>
+              <span class="tag">Mobile-First</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item animate__animated animate__bounceInUp">
+          <div
+            class="gallery-image"
+            style="
+              background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            "
+          >
+            🎯
+          </div>
+          <div class="gallery-content">
+            <h3 class="gallery-title">Interatividade</h3>
+            <p class="gallery-description">
+              Elementos interativos que respondem às ações do usuário com
+              animações suaves e feedback visual imediato.
+            </p>
+            <div class="gallery-tags">
+              <span class="tag">Interactive</span>
+              <span class="tag">Feedback</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item animate__animated animate__flipInX">
+          <div
+            class="gallery-image"
+            style="
+              background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            "
+          >
+            ⚡
+          </div>
+          <div class="gallery-content">
+            <h3 class="gallery-title">Velocidade</h3>
+            <p class="gallery-description">
+              Carregamento rápido e animações eficientes que não comprometem a
+              experiência do usuário.
+            </p>
+            <div class="gallery-tags">
+              <span class="tag">Fast</span>
+              <span class="tag">Efficient</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item animate__animated animate__rotateIn">
+          <div
+            class="gallery-image"
+            style="
+              background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            "
+          >
+            🌟
+          </div>
+          <div class="gallery-content">
+            <h3 class="gallery-title">Acessibilidade</h3>
+            <p class="gallery-description">
+              Respeita as preferências do usuário para movimento reduzido e
+              garante uma experiência inclusiva.
+            </p>
+            <div class="gallery-tags">
+              <span class="tag">A11y</span>
+              <span class="tag">Inclusive</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section
+        class="features-section animate__animated animate__fadeInUp animate__delay-3s"
+      >
+        <h2 style="text-align: center; margin-bottom: 10px; font-size: 2rem">
+          Recursos Avançados
+        </h2>
+        <p
+          style="
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+          "
+        >
+          Explore as capacidades completas do Animate.css
+        </p>
+
+        <div class="features-grid" id="features">
+          <div class="feature-item animate__animated animate__fadeInLeft">
+            <span class="feature-icon">🎭</span>
+            <h3 class="feature-title">80+ Animações</h3>
+            <p class="feature-description">
+              Uma vasta biblioteca de animações pré-definidas para todas as
+              necessidades
+            </p>
+          </div>
+
+          <div
+            class="feature-item animate__animated animate__fadeInUp animate__delay-1s"
+          >
+            <span class="feature-icon">⚙️</span>
+            <h3 class="feature-title">Personalizável</h3>
+            <p class="feature-description">
+              Controle total sobre duração, delay, repetição e outros parâmetros
+            </p>
+          </div>
+
+          <div
+            class="feature-item animate__animated animate__fadeInRight animate__delay-2s"
+          >
+            <span class="feature-icon">🔧</span>
+            <h3 class="feature-title">Fácil Implementação</h3>
+            <p class="feature-description">
+              Adicione animações com apenas algumas classes CSS
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="animate__animated animate__fadeIn animate__delay-4s">
+        <p>
+          Criado com ❤️ usando <strong>Animate.css</strong> |
+          <a
+            href="https://animate.style/"
+            target="_blank"
+            style="color: var(--accent)"
+          >
+            Documentação Oficial
+          </a>
+        </p>
+      </footer>
+    </div>
+
+    <script>
+      function replayGalleryAnimation() {
+        const gallery = document.getElementById("gallery");
+        const items = gallery.querySelectorAll(".gallery-item");
+
+        // Remove todas as classes de animação
+        items.forEach((item) => {
+          item.classList.remove(
+            "animate__animated",
+            "animate__zoomIn",
+            "animate__slideInLeft",
+            "animate__slideInRight",
+            "animate__bounceInUp",
+            "animate__flipInX",
+            "animate__rotateIn"
+          );
+        });
+
+        // Força reflow
+        gallery.offsetHeight;
+
+        // Adiciona as animações de volta com delay
+        setTimeout(() => {
+          items[0].classList.add("animate__animated", "animate__zoomIn");
+          setTimeout(
+            () =>
+              items[1].classList.add(
+                "animate__animated",
+                "animate__slideInLeft"
+              ),
+            200
+          );
+          setTimeout(
+            () =>
+              items[2].classList.add(
+                "animate__animated",
+                "animate__slideInRight"
+              ),
+            400
+          );
+          setTimeout(
+            () =>
+              items[3].classList.add(
+                "animate__animated",
+                "animate__bounceInUp"
+              ),
+            600
+          );
+          setTimeout(
+            () =>
+              items[4].classList.add("animate__animated", "animate__flipInX"),
+            800
+          );
+          setTimeout(
+            () =>
+              items[5].classList.add("animate__animated", "animate__rotateIn"),
+            1000
+          );
+        }, 100);
+      }
+
+      function replayFeatureAnimation() {
+        const features = document.getElementById("features");
+        const items = features.querySelectorAll(".feature-item");
+
+        // Remove animações
+        items.forEach((item) => {
+          item.classList.remove(
+            "animate__animated",
+            "animate__fadeInLeft",
+            "animate__fadeInUp",
+            "animate__fadeInRight"
+          );
+        });
+
+        // Força reflow
+        features.offsetHeight;
+
+        // Adiciona animações de volta
+        setTimeout(() => {
+          items[0].classList.add("animate__animated", "animate__fadeInLeft");
+          setTimeout(
+            () =>
+              items[1].classList.add("animate__animated", "animate__fadeInUp"),
+            300
+          );
+          setTimeout(
+            () =>
+              items[2].classList.add(
+                "animate__animated",
+                "animate__fadeInRight"
+              ),
+            600
+          );
+        }, 100);
+      }
+
+      // Adiciona efeito de hover com animação
+      document.querySelectorAll(".gallery-item").forEach((item) => {
+        item.addEventListener("mouseenter", function () {
+          if (!this.classList.contains("animate__pulse")) {
+            this.classList.add("animate__animated", "animate__pulse");
+            setTimeout(() => {
+              this.classList.remove("animate__animated", "animate__pulse");
+            }, 1000);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

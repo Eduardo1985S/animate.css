@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demonstração Animate.css - HTML/CSS</title>
+
+    <!-- Preload crítico -->
+    <link rel="preload" href="./assets/css/styles.css" as="style" />
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header animate__animated animate__fadeInDown">
+        <h1>Animate.css</h1>
+        <p>Demonstração usando apenas HTML e CSS</p>
+        <div
+          style="
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+          "
+        >
+          <button>
+            <a href="pages/exemplo.html">Exemplo 1</a>
+          </button>
+          <button>
+            <a href="pages/exemplo2.html">Exemplo 2 - Galeria</a>
+          </button>
+        </div>
+      </header>
+
+      <main class="content">
+        <section
+          class="intro animate__animated animate__fadeInUp animate__delay-1s"
+        >
+          <p>
+            O <strong>Animate.css</strong> é uma biblioteca de animações CSS
+            pronta para uso. Todas as animações abaixo funcionam automaticamente
+            com HTML e CSS puro!
+          </p>
+        </section>
+
+        <!-- Exemplo 1: Bounce -->
+        <section
+          class="demo-section animate__animated animate__fadeInLeft animate__delay-2s"
+        >
+          <h2 class="demo-title">1. Animação Bounce (Pular)</h2>
+          <div class="demo-item">
+            <div class="demo-controls">
+              <button onclick="toggleAnimation(this)" data-target="bounce-demo">
+                Pausar Animação
+              </button>
+            </div>
+            <div
+              id="bounce-demo"
+              class="demo-box bounce-box animate__animated animate__bounce animate__infinite"
+            >
+              Bounce!
+            </div>
+            <div class="demo-description">
+              <h3>Como funciona:</h3>
+              <p>
+                A animação <code>bounce</code> faz o elemento "pular" com um
+                efeito elástico. Esta caixa está configurada para pular
+                infinitamente.
+              </p>
+              <p>
+                <strong>Uso:</strong> Ideal para chamar atenção em botões
+                importantes ou elementos de destaque.
+              </p>
+              <div class="code-block">
+                &lt;div class="animate__animated animate__bounce
+                animate__infinite"&gt; Conteúdo que pula &lt;/div&gt;
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Exemplo 2: Fade -->
+        <section
+          class="demo-section animate__animated animate__fadeInRight animate__delay-3s"
+        >
+          <h2 class="demo-title">2. Animação FadeIn (Aparecer)</h2>
+          <div class="demo-item">
+            <div class="demo-controls">
+              <button onclick="toggleAnimation(this)" data-target="fade-demo">
+                Pausar Animação
+              </button>
+            </div>
+            <div
+              id="fade-demo"
+              class="demo-box fade-box animate__animated animate__fadeIn animate__infinite"
+            >
+              Fade!
+            </div>
+            <div class="demo-description">
+              <h3>Como funciona:</h3>
+              <p>
+                A animação <code>fadeIn</code> faz o elemento aparecer
+                gradualmente. Esta caixa some e aparece continuamente.
+              </p>
+              <p>
+                <strong>Uso:</strong> Perfeita para revelar conteúdo suavemente,
+                como modais ou seções importantes.
+              </p>
+              <div class="code-block">
+                &lt;div class="animate__animated animate__fadeIn"&gt; Aparece
+                suavemente &lt;/div&gt;
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Exemplo 3: Slide -->
+        <section
+          class="demo-section animate__animated animate__fadeInUp animate__delay-4s"
+        >
+          <h2 class="demo-title">3. Animação SlideInUp (Deslizar)</h2>
+          <div class="demo-item">
+            <div class="demo-controls">
+              <button onclick="toggleAnimation(this)" data-target="slide-demo">
+                Pausar Animação
+              </button>
+            </div>
+            <div
+              id="slide-demo"
+              class="demo-box slide-box animate__animated animate__slideInUp animate__infinite"
+            >
+              Slide!
+            </div>
+            <div class="demo-description">
+              <h3>Como funciona:</h3>
+              <p>
+                A animação <code>slideInUp</code> faz o elemento deslizar de
+                baixo para cima. Esta caixa repete o movimento infinitamente.
+              </p>
+              <p>
+                <strong>Uso:</strong> Excelente para animações de entrada em
+                cards, listas ou elementos que aparecem na tela.
+              </p>
+              <div class="code-block">
+                &lt;div class="animate__animated animate__slideInUp"&gt; Desliza
+                de baixo para cima &lt;/div&gt;
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Exemplos adicionais -->
+        <section
+          class="demo-section animate__animated animate__zoomIn animate__delay-5s"
+        >
+          <h2 class="demo-title">Exemplos Adicionais</h2>
+
+          <h3>Efeito Hover com Pulse:</h3>
+          <div class="hover-example">
+            Passe o mouse aqui para ver o efeito pulse!
+          </div>
+
+          <h3>Cards com Entrada Sequencial:</h3>
+          <div class="cards-container">
+            <div class="card-example card-1">
+              <h4>Card 1</h4>
+              <p>Entra pela esquerda</p>
+            </div>
+            <div class="card-example card-2">
+              <h4>Card 2</h4>
+              <p>Entra de baixo</p>
+            </div>
+            <div class="card-example card-3">
+              <h4>Card 3</h4>
+              <p>Entra pela direita</p>
+            </div>
+          </div>
+
+          <h3>Texto Piscando:</h3>
+          <div
+            class="blink-text animate__animated animate__flash animate__infinite"
+          >
+            ⚡ Este texto pisca continuamente! ⚡
+          </div>
+        </section>
+
+        <section
+          class="intro animate__animated animate__fadeIn animate__delay-6s"
+        >
+          <h2 style="margin-bottom: 20px">Como usar o Animate.css</h2>
+          <div style="text-align: left; max-width: 800px; margin: 0 auto">
+            <p><strong>1. Incluir a biblioteca:</strong></p>
+            <div class="code-block">
+              &lt;link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"&gt;
+            </div>
+
+            <p style="margin-top: 20px">
+              <strong>2. Estrutura básica das classes:</strong>
+            </p>
+            <div class="code-block">
+              &lt;div class="animate__animated animate__bounce"&gt;Elemento
+              animado&lt;/div&gt;
+            </div>
+
+            <p style="margin-top: 20px">
+              <strong>3. Classes modificadoras úteis:</strong>
+            </p>
+            <div class="code-block">
+              animate__delay-1s /* Atraso de 1 segundo */ animate__delay-2s /*
+              Atraso de 2 segundos */ animate__slow /* Animação 2x mais lenta */
+              animate__fast /* Animação 2x mais rápida */ animate__infinite /*
+              Repetir infinitamente */ animate__repeat-2 /* Repetir 2 vezes */
+            </div>
+
+            <p style="margin-top: 20px">
+              <strong>4. Exemplos de outras animações disponíveis:</strong>
+            </p>
+            <div class="code-block">
+              /* Entrada */ animate__fadeInLeft, animate__fadeInRight,
+              animate__fadeInUp, animate__fadeInDown animate__slideInLeft,
+              animate__slideInRight, animate__slideInUp, animate__slideInDown
+              animate__zoomIn, animate__bounceIn, animate__rotateIn /* Atenção
+              */ animate__bounce, animate__flash, animate__pulse,
+              animate__shake, animate__swing /* Saída */ animate__fadeOut,
+              animate__slideOutUp, animate__zoomOut, animate__bounceOut
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>
+          Saiba mais sobre o Animate.css em:
+          <a href="https://animate.style/" target="_blank">animate.style</a>
+        </p>
+        <p style="margin-top: 10px; font-size: 0.9em">
+          Todas as animações desta página funcionam apenas com HTML e CSS!
+        </p>
+      </footer>
+    </div>
+
+    <script>
+      function toggleAnimation(button) {
+        const targetId = button.getAttribute("data-target");
+        const element = document.getElementById(targetId);
+
+        if (element.style.animationPlayState === "paused") {
+          element.style.animationPlayState = "running";
+          button.textContent = "Pausar Animação";
+        } else {
+          element.style.animationPlayState = "paused";
+          button.textContent = "Retomar Animação";
+        }
+      }
+    </script>
+  </body>
+</html>

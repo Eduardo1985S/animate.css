@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Exemplo - 3 Cards com Animate.css</title>
+    <!-- Animate.css CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"
+    />
+    <style>
+      :root {
+        --bg: #0f172a;
+        --card: #0b1220;
+        --muted: #9aa4bf;
+        --accent: #7c3aed;
+        --glass: rgba(255, 255, 255, 0.04);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial;
+        background: linear-gradient(180deg, #071024 0%, #071633 100%);
+        color: #e6eef8;
+        padding: 32px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        min-height: 100vh;
+      }
+      .wrap {
+        width: 100%;
+        max-width: 1100px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+      header h1 {
+        font-size: 20px;
+        margin: 0;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 18px;
+        margin-bottom: 22px;
+      }
+      .card {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.02),
+          rgba(255, 255, 255, 0.01)
+        );
+        border-radius: 12px;
+        padding: 18px;
+        box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        transition: transform 0.22s ease, box-shadow 0.22s;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        min-height: 160px;
+      }
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 30px rgba(7, 10, 25, 0.7);
+      }
+      .card .thumb {
+        height: 72px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, var(--accent), #4f46e5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+      }
+      .card h3 {
+        margin: 0;
+        font-size: 16px;
+      }
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .card .meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: auto;
+      }
+      .btn {
+        padding: 8px 12px;
+        border-radius: 8px;
+        border: none;
+        background: var(--glass);
+        color: inherit;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      .text-block {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.02),
+          rgba(255, 255, 255, 0.01)
+        );
+        border-radius: 10px;
+        padding: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        color: var(--muted);
+        line-height: 1.6;
+        font-size: 15px;
+      }
+      footer {
+        margin-top: 14px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      @media (max-width: 520px) {
+        header h1 {
+          font-size: 16px;
+        }
+      }
+
+      /* Acessibilidade - Respeitar preferências de movimento reduzido */
+      @media (prefers-reduced-motion: reduce) {
+        .animate__animated {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <h1>Exemplo funcional — 3 cards + bloco de texto (Animate.css)</h1>
+        <button style="margin-left: auto;">
+          <a href="../index.html" style="color: inherit; text-decoration: none;">Voltar</a>
+        </button>
+      </header>
+
+      <div class="grid">
+        <div class="card">
+          <div class="thumb animate__animated animate__fadeInDown">IMG 1</div>
+          <h3 class="animate__animated animate__fadeInUp animate__delay-1s">
+            Card 1
+          </h3>
+          <p class="animate__animated animate__fadeInUp animate__delay-1s">
+            Este é um exemplo de card com animações usando Animate.css.
+          </p>
+          <div class="meta">
+            <span class="animate__animated animate__fadeInUp animate__delay-2s"
+              >Meta Info</span
+            >
+            <button
+              class="btn animate__animated animate__fadeInUp animate__delay-2s"
+            >
+              Ação
+            </button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="thumb animate__animated animate__fadeInDown animate__delay-1s">IMG 2</div>
+          <h3 class="animate__animated animate__fadeInUp animate__delay-2s">
+            Card 2
+          </h3>
+          <p class="animate__animated animate__fadeInUp animate__delay-2s">
+            Segundo card com delay diferente para criar sequência.
+          </p>
+          <div class="meta">
+            <span class="animate__animated animate__fadeInUp animate__delay-3s"
+              >Meta Info</span
+            >
+            <button
+              class="btn animate__animated animate__fadeInUp animate__delay-3s"
+            >
+              Ação
+            </button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="thumb animate__animated animate__fadeInDown animate__delay-2s">IMG 3</div>
+          <h3 class="animate__animated animate__fadeInUp animate__delay-3s">
+            Card 3
+          </h3>
+          <p class="animate__animated animate__fadeInUp animate__delay-3s">
+            Terceiro card completando a sequência animada.
+          </p>
+          <div class="meta">
+            <span class="animate__animated animate__fadeInUp animate__delay-4s"
+              >Meta Info</span
+            >
+            <button
+              class="btn animate__animated animate__fadeInUp animate__delay-4s"
+            >
+              Ação
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-block animate__animated animate__fadeIn animate__delay-5s">
+        <h3>Como funciona este exemplo:</h3>
+        <p>
+          Os três cards acima demonstram animações sequenciais usando Animate.css. 
+          Cada elemento tem um delay progressivo, criando um efeito de "cascata" 
+          visual que é muito efetivo para interfaces de usuário.
+        </p>
+        <p>
+          <strong>Estrutura das animações:</strong><br>
+          • Imagens: fadeInDown com delays de 0s, 1s e 2s<br>
+          • Títulos: fadeInUp com delays de 1s, 2s e 3s<br>
+          • Textos: fadeInUp sincronizados com os títulos<br>
+          • Meta informações: fadeInUp com delays maiores para criar profundidade
+        </p>
+      </div>
+
+      <footer class="animate__animated animate__fadeIn animate__delay-6s">
+        Exemplo prático de sequenciamento de animações com Animate.css
+      </footer>
+  </body>
+</html>
