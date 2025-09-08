@@ -18,4 +18,3 @@ Projeto educativo de animação web usando [Animate.css](https://animate.style/)
 
 - [Animate.css](https://animate.style/)
 
-Este projeto é apenas para fins educativos.
