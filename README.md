@@ -18,3 +18,8 @@ Projeto educativo de animação web usando [Animate.css](https://animate.style/)
 
 - [Animate.css](https://animate.style/)
 
+## Atenção
+
+> No Windows, se as animações do sistema estiverem desativadas, as animações da biblioteca Animate.css podem não funcionar corretamente.
+
+Este projeto é apenas para fins educativos.
